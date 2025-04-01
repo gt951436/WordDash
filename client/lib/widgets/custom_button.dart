@@ -8,7 +8,7 @@ class CustomButton extends StatelessWidget {
     Key? key,
     required this.text,
     required this.onTap,
-    required this.isHome,
+    this.isHome = false,
   }) : super(key: key);
 
   @override
