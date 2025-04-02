@@ -1,3 +1,5 @@
+import "package:client/utils/socket_client.dart";
+import "package:client/utils/socket_methods.dart";
 import "package:client/widgets/custom_button.dart";
 import "package:client/widgets/custom_text_field.dart";
 import "package:flutter/material.dart";
@@ -12,6 +14,7 @@ class CreateRoomScreen extends StatefulWidget {
 
 class _CreateRoomScreenState extends State<CreateRoomScreen> {
   final TextEditingController _nameController = TextEditingController();
+  final SocketMethods _socketMethods = SocketMethods();
 
   @override
   void dispose() {
@@ -54,7 +57,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                 ),
                 CustomButton(
                   text: "Create",
-                  onTap: () {},
+                  onTap: () => _socketMethods.createGame(_nameController.text),
                 ),
               ],
             ),
