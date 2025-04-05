@@ -1,3 +1,4 @@
+import "package:client/utils/socket_methods.dart";
 import "package:client/widgets/custom_button.dart";
 import "package:client/widgets/custom_text_field.dart";
 import "package:flutter/material.dart";
@@ -12,6 +13,14 @@ class JoinRoomScreen extends StatefulWidget {
 class _JoinRoomScreenState extends State<JoinRoomScreen> {
   final _nameController = TextEditingController();
   final _gameIdController = TextEditingController();
+  final SocketMethods _socketMethods = SocketMethods();
+
+  @override
+  void initState() {
+    super.initState();
+    _socketMethods.updateGameListener(context);
+    _socketMethods.notCorrectGameListener(context);
+  }
 
   @override
   void dispose() {
@@ -23,6 +32,7 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Center(
         child: ConstrainedBox(
@@ -60,7 +70,10 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
                 ),
                 CustomButton(
                   text: "Join",
-                  onTap: () {},
+                  onTap: () => _socketMethods.joinGame(
+                    _gameIdController.text,
+                    _nameController.text,
+                  ),
                 ),
               ],
             ),
