@@ -13,8 +13,7 @@ var io = require("socket.io")(server);
 app.use(express.json());
 
 // connect mongodb
-const DB =
-  "mongodb+srv://garvT:908463@cluster0.iahrner.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const DB = process.env.MONGODB_URI;
 
 // listening to socket io events from the client (flutter code)
 io.on("connection", (socket) => {
